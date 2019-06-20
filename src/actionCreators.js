@@ -25,4 +25,4 @@ const removeFromCart = product => {
   }
 };
 
-export { addToCart, removeFromCart };
+export { loadProducts, addToCart, removeFromCart };
