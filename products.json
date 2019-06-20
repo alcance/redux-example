@@ -1,0 +1,7 @@
+{
+  "products": [
+    {"id": 1, "name": "Hipster Ultimate", "price": 299, "image": "https://cdn1.imggmi.com/uploads/2019/6/20/ce8dada7a50eb123522d66fe36866f09-full.jpg"},
+    {"id": 2, "name": "On Motion Live", "price": 99, "image": "https://cdn1.imggmi.com/uploads/2019/6/20/73808b4df161529821c994b18085bb0c-full.jpg"},
+    {"id": 3, "name": "Underground Max", "price": 149, "image": "https://cdn1.imggmi.com/uploads/2019/6/20/ecc3b878fa1aa4fa149c3895a7c5a4da-full.jpg"}
+  ]
+}
