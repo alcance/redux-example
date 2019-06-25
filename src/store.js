@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 const reducer = (state, action) => {
   if (action.type === 'REPLACE_PRODUCTS') {
@@ -27,4 +28,4 @@ const logger = store => next => action => {
   return result
 }
 
-export default createStore(reducer, { cart: [], products: [] }, applyMiddleware(logger));
+export default createStore(reducer, { cart: [], products: [] }, applyMiddleware(logger, thunk));
