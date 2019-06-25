@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Glyphicon } from 'react-bootstrap';
-import store from '../store';
 import { addToCart } from '../actionCreators';
+import { connect } from 'react-redux';
 
 const styles = {
   products: {
@@ -16,37 +16,37 @@ const styles = {
   }
 };
 
-class ProductList extends Component {
-  constructor() {
-    super();
-    this.addToCart = this.addToCart.bind(this);
-
-    this.state = {
-      products: []
-    }
-  }
-
-  render() {
-    return (
-      <div style={styles.products}>
-        {this.state.products.map(product =>
-          <div className="thumbnail" style={styles.product} key={product.id}>
-            <img src={product.image} alt={product.name} />
-            <div className="caption">
-              <h4>{product.name}</h4>
-              <p>
-                <Button bsStyle="primary" onClick={() => this.addToCart(product)} role="button" disabled={product.inventory <= 0}>${product.price} <Glyphicon glyph="shopping-cart" /></Button>
-              </p>
-            </div>
+const ProductList = ({ products, addToCart}) => {
+  return (
+    <div style={styles.products}>
+      {products.map(product =>
+        <div className="thumbnail" style={styles.product} key={product.id}>
+          <img src={product.image} alt={product.name} />
+          <div className="caption">
+            <h4>{product.name}</h4>
+            <p>
+              <Button bsStyle="primary" onClick={() => addToCart(product)} role="button" disabled={product.inventory <= 0}>${product.price} <Glyphicon glyph="shopping-cart" /></Button>
+            </p>
           </div>
-        )}
-      </div>
-    );
-  }
+        </div>
+      )}
+    </div>
+  );
+}
 
-  addToCart(product) {
-    store.dispatch(addToCart(product));
+
+const mapStateToProp = state => {
+  return {
+    products: state.products
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart(product) {
+      dispatch(addToCart(product));
+    }
   }
 }
 
-export default ProductList;
+export default connect(mapStateToProp, mapDispatchToProps)(ProductList);
